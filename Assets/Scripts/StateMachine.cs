@@ -21,6 +21,7 @@ public abstract class StateMachine : MonoBehaviour
                 "to the State Machine!");
             return;
         }
+        InitiateStateChange(targetState);
     }
 
     public void RevertState()
