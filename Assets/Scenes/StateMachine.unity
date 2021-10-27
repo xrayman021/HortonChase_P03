@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 1874383682}
   - component: {fileID: 1874383683}
   - component: {fileID: 1874383684}
+  - component: {fileID: 1874383685}
   m_Layer: 0
   m_Name: StateController
   m_TagString: Untagged
@@ -384,5 +385,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9315ce662b6108f4da1bf836dd113fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingUnitNumber: 10
+  _numberOfPlayers: 1
+--- !u!114 &1874383685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874383681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344110ffecc904c42bcb3ccb4105aa06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
