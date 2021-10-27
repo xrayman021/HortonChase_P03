@@ -487,6 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1261595469}
+  - component: {fileID: 1261595470}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -508,6 +509,18 @@ Transform:
   m_Father: {fileID: 1278719770}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1261595470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261595468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1094f321f34794caa6ce8f97941ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278719769
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +565,7 @@ GameObject:
   - component: {fileID: 1874383683}
   - component: {fileID: 1874383684}
   - component: {fileID: 1874383685}
+  - component: {fileID: 1874383686}
   m_Layer: 0
   m_Name: StateController
   m_TagString: Untagged
@@ -585,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387f0050cbcf11d439b75e9f2a6caa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 1261595470}
 --- !u!114 &1874383684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +627,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTurnTextUI: {fileID: 368552230}
+--- !u!114 &1874383686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874383681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcada78db22b2744826a16cf7124400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2058752183
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,13 +17,21 @@ public class PlayerTurnGameState : GameState
 
         _playerTurnCount++;
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
+        StateMachine.Input.PressedConfirm += OnPressedConfirm;
     }
 
     public override void Exit()
     {
         //base.Exit();
         _playerTurnTextUI.gameObject.SetActive(false);
+        StateMachine.Input.PressedConfirm -= OnPressedConfirm;
+
         Debug.Log("Player Turn: Exiting...");
+    }
+
+    void OnPressedConfirm()
+    {
+        Debug.Log("Attempt to enter Enemy State!");
     }
 
 }
