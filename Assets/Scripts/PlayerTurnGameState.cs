@@ -11,7 +11,7 @@ public class PlayerTurnGameState : GameState
 
     public override void Enter()
     {
-        base.Enter();
+        //base.Enter();
         Debug.Log("Player turn: ...Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
 
@@ -21,7 +21,7 @@ public class PlayerTurnGameState : GameState
 
     public override void Exit()
     {
-        base.Exit();
+        //base.Exit();
         _playerTurnTextUI.gameObject.SetActive(false);
         Debug.Log("Player Turn: Exiting...");
     }
