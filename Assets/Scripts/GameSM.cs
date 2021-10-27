@@ -6,6 +6,6 @@ public class GameSM : StateMachine
 {
     void Start()
     {
-        //set starting State here
+        ChangeState<SetupGameState>();
     }
 }
