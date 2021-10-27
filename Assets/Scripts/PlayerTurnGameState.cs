@@ -31,7 +31,8 @@ public class PlayerTurnGameState : GameState
 
     void OnPressedConfirm()
     {
-        Debug.Log("Attempt to enter Enemy State!");
+        StateMachine.ChangeState<EnemyTurnGameState>();
+        //Debug.Log("Attempt to enter Enemy State!");
     }
 
 }
