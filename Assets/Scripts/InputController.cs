@@ -9,6 +9,8 @@ public class InputController : MonoBehaviour
     public event Action PressedCancel = delegate { };
     public event Action PressedLeft = delegate { };
     public event Action PressedRight = delegate { };
+    public event Action PressedUp = delegate { };
+    public event Action PressedDown = delegate { };
 
     void Update()
     {
@@ -16,6 +18,8 @@ public class InputController : MonoBehaviour
         DetectCancel();
         DetectLeft();
         DetectRight();
+        DetectUp();
+        DetectDown();
     }
 
     private void DetectRight()
@@ -45,6 +49,22 @@ public class InputController : MonoBehaviour
     private void DetectConfirm()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PressedConfirm?.Invoke();
+        }
+    }
+
+    private void DetectUp()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            PressedConfirm?.Invoke();
+        }
+    }
+
+    private void DetectDown()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
         {
             PressedConfirm?.Invoke();
         }
