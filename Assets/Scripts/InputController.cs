@@ -58,7 +58,7 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            PressedConfirm?.Invoke();
+            PressedUp?.Invoke();
         }
     }
 
@@ -66,7 +66,7 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            PressedConfirm?.Invoke();
+            PressedDown?.Invoke();
         }
     }
 
