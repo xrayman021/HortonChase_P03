@@ -19,6 +19,7 @@ public class PlayerTurnGameState : GameState
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         StateMachine.Input.PressedConfirm += OnPressedConfirm;
         StateMachine.Input.PressedUp += OnPressedUp;
+        StateMachine.Input.PressedDown += OnPressedDown;
     }
 
     public override void Exit()
@@ -27,6 +28,7 @@ public class PlayerTurnGameState : GameState
         _playerTurnTextUI.gameObject.SetActive(false);
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
         StateMachine.Input.PressedUp -= OnPressedUp;
+        StateMachine.Input.PressedDown -= OnPressedDown;
 
         Debug.Log("Player Turn: Exiting...");
     }
@@ -40,6 +42,11 @@ public class PlayerTurnGameState : GameState
     void OnPressedUp()
     {
         StateMachine.ChangeState<WinState>();
+    }
+
+    void OnPressedDown()
+    {
+        StateMachine.ChangeState<LoseState>();
     }
 
 }
