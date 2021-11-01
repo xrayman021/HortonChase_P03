@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class InputController : MonoBehaviour
         DetectRight();
         DetectUp();
         DetectDown();
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            ExitLevel();
+        }
+    }
+
+    public void ExitLevel()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void DetectRight()
