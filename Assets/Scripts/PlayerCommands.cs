@@ -24,6 +24,13 @@ public class PlayerCommands : MonoBehaviour
             SpawnToken();
         }
 
+        if(Input.GetMouseButtonDown(1))
+        {
+            GetNewMouseHit();
+            BuffToken();
+        }
+
+
         if(Input.GetKeyDown(KeyCode.Z))
         {
             Undo();
@@ -52,6 +59,19 @@ public class PlayerCommands : MonoBehaviour
     public void Undo()
     {
         _commandInvoker.UndoCommand();
+    }
+
+    public void BuffToken()
+    {
+        IBuffable buffableUnit =
+            _hitInfo.transform.GetComponent<IBuffable>();
+
+        if(buffableUnit != null)
+        {
+            ICommand buffCommand = new BuffCommand(buffableUnit);
+            _commandInvoker.ExecuteCommand(buffCommand);
+        }
+
     }
 
 }
