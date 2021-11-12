@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Token : MonoBehaviour
+public class Token : MonoBehaviour, IBuffable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] MeshRenderer _renderer = null;
+    [SerializeField] Color _initialColor = Color.green;
+    [SerializeField] Color _buffColor = Color.red;
+
+    void Awake()
     {
-        
+        _renderer.material.color = _initialColor;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Buff()
     {
-        
+        Debug.Log("!Buff Feedback!");
+        _renderer.material.color = _buffColor;
     }
+
+    public void Unbuff()
+    {
+        Debug.Log("...Unbuff Feedback...");
+        _renderer.material.color = _initialColor;
+    }
+
 }
