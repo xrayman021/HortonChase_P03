@@ -9,6 +9,8 @@ public class PlayerCommands : MonoBehaviour
     Camera _camera = null;
     RaycastHit _hitInfo;
 
+    CommandInvoker _commandInvoker = new CommandInvoker();
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -47,6 +49,9 @@ public class PlayerCommands : MonoBehaviour
         _commandInvoker.ExecuteCommand(spawnTokenCommand);
     }
 
-    
+    public void Undo()
+    {
+        _commandInvoker.UndoCommand();
+    }
 
 }
