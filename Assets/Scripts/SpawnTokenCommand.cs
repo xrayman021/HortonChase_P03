@@ -20,4 +20,9 @@ public class SpawnTokenCommand : ICommand
         _spawnedToken = _boardSpawner.SpawnToken(_position);
         Debug.Log("Spawn Token");
     }
+
+    public void Undo()
+    {
+        _boardSpawner.RemoveToken(_spawnedToken);
+    }
 }

@@ -13,4 +13,9 @@ public class BoardSpawner : MonoBehaviour
 
         return newToken;
     }
+
+    public void RemoveToken(Token tokenToRemove)
+    {
+        Destroy(tokenToRemove.gameObject);
+    }
 }
