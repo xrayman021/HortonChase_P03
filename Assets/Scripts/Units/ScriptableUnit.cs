@@ -5,15 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Unit", menuName = "Scriptable Unit")]
 public class ScriptableUnit : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public enum Faction
+{
+    Hero = 0,
+    Enemy = 1
 }
