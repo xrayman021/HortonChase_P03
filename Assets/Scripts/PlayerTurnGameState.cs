@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerTurnGameState : GameState
 {
+    public static PlayerTurnGameState Instance;
     [SerializeField] Text _playerTurnTextUI = null;
 
     int _playerTurnCount = 0;
