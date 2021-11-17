@@ -10,6 +10,8 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Transform _cam;
 
+    private Dictionary<Vector2, Tile> _tiles;
+
     private void Start()
     {
         GenerateGrid();
@@ -25,10 +27,21 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y} {0}";
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+
+                _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
 
 
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+    }
+
+    public Tile GetTileAtPosition(Vector2 pos)
+    {
+        if(_tiles.TryGetValue(pos, out var tile))
+        {
+            return tile;
+        }
+        return null;
     }
 }
