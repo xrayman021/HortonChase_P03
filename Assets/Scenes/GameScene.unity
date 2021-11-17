@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 16
   _height: 9
-  _tilePrefab: {fileID: 4615781765138513905, guid: 448f554c86a8b394c870593f5088f45f, type: 3}
+  _tilePrefab: {fileID: -6303505634967973384, guid: 3d8d8b0e6c563d945b5d0f3db1e33301, type: 3}
   _cam: {fileID: 963194228}
 --- !u!1 &368552228
 GameObject:
