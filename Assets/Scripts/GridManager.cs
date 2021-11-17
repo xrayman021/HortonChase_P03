@@ -28,7 +28,7 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(randomTile, new Vector3(x, y, 0), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y} {0}";
 
-                var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                
                 spawnedTile.Init(x,y);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
