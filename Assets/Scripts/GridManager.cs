@@ -19,6 +19,7 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
+        _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
@@ -27,6 +28,7 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y} {0}";
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                spawnedTile.Init(isOffset);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
