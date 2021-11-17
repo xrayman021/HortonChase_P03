@@ -11,6 +11,7 @@ public class PlayerTurnGameState : GameState
 
     public override void Enter()
     {
+        GridManager.Instance.GenerateGrid();
         //base.Enter();
         Debug.Log("Player turn: ...Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
