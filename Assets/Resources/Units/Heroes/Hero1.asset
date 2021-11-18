@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be4444de8323654fa9011a41be54709, type: 3}
   m_Name: Hero1
   m_EditorClassIdentifier: 
+  Faction: 0
+  UnitPrefab: {fileID: 1528828335120861223, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}

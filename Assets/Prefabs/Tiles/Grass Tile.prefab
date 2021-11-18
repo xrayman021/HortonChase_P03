@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fefd34dd25fb6e4a9252d1135dfb935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseColor: {r: 0.41960785, g: 0.7294118, b: 0.3529412, a: 0}
-  _offsetColor: {r: 0.41077125, g: 0.990566, b: 0.10902445, a: 1}
   _renderer: {fileID: 1545464808280991514}
   _highlight: {fileID: 2538374482152408347}
+  _isWalkable: 1
+  OccupiedUnit: {fileID: 0}
+  _baseColor: {r: 0.41960785, g: 0.7294118, b: 0.3529412, a: 0}
+  _offsetColor: {r: 0.41077125, g: 0.990566, b: 0.10902445, a: 1}
 --- !u!1001 &6159821485880563948
 PrefabInstance:
   m_ObjectHideFlags: 0
