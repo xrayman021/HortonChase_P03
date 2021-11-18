@@ -27,6 +27,21 @@ public class UnitManager : MonoBehaviour
 
             randomSpawnTile.SetUnit(spawnedHero);
         }
+        GameManager.Instance.ChangeState(GameState.SpawnEnemies);
+    }
+
+    public void SpawnEnemies()
+    {
+        var enemyCount = 1;
+        for (int i = 0; i < enemyCount; i++)
+        {
+            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
+            var spawnedEnemy = Instantiate(randomPrefab);
+            var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
+
+            randomSpawnTile.SetUnit(spawnedEnemy);
+        }
+        GameManager.Instance.ChangeState(GameState.HeroesTurn);
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
