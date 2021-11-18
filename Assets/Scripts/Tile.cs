@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
 {
-    
+    public string TileName;
     [SerializeField] protected MeshRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isWalkable;
@@ -21,6 +21,7 @@ public abstract class Tile : MonoBehaviour
     private void OnMouseEnter()
     {
         _highlight.SetActive(true);
+        MenuManager.Instance.ShowTileInfo(this);
     }
 
     private void OnMouseExit()

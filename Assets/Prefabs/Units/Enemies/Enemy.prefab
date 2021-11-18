@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a2cb401ca197243824bd17a0f024e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitName: Thug
+  OccupiedTile: {fileID: 0}
+  Faction: 0
 --- !u!1001 &6598142492425806249
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -140,3 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd801773940bb2e46ad87cde56b90ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitName: Sigurd
+  OccupiedTile: {fileID: 0}
+  Faction: 0
