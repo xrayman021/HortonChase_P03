@@ -28,6 +28,37 @@ public abstract class Tile : MonoBehaviour
         _highlight.SetActive(false);
     }
 
+    private void OnMouseDown()
+    {
+        if (GameManager.Instance.GameState != GameState.HeroesTurn) return;
+
+        if(OccupiedUnit != null)
+        {
+            if(OccupiedUnit.Faction == Faction.Hero)
+            {
+                UnitManager.Instance.SetSelectedHero((BaseHero)OccupiedUnit);
+            }
+            else
+            {
+                if(UnitManager.Instance.SelectedHero != null)
+                {
+                    var enemy = (BaseEnemy)OccupiedUnit;
+                    Destroy(enemy.gameObject);
+                    UnitManager.Instance.SetSelectedHero(null);
+                }
+            }
+        }
+        else
+        {
+            if(UnitManager.Instance.SelectedHero != null)
+            {
+                SetUnit(UnitManager.Instance.SelectedHero);
+                UnitManager.Instance.SetSelectedHero(null);
+
+            }
+        }
+    }
+
     public void SetUnit(BaseUnit unit)
     {
         if (unit.OccupiedTile != null) unit.OccupiedTile.OccupiedUnit = null;
