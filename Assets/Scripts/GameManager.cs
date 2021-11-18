@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.GenerateGrid:
-                HandlePlayerTurn();
+                GridManager.Instance.GenerateGrid();
                 break;
             case GameState.SpawnHeroes:
                 break;
