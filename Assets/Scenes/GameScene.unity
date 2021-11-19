@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f038d21586c4df48b790be179683ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyThinkingTextUI: {fileID: 426635156}
 --- !u!1 &92203713
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +290,8 @@ MonoBehaviour:
   _grassTile: {fileID: -6303505634967973384, guid: 3d8d8b0e6c563d945b5d0f3db1e33301, type: 3}
   _mountainTile: {fileID: 7971944220737055614, guid: 055b68c85be2ba248af3d2b648bdf7b5, type: 3}
   _cam: {fileID: 963194228}
+  UnitManager: {fileID: 1134830748}
+  player: {fileID: 0}
 --- !u!1 &253539943
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a80b365e7109d349aea642b4326ed2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedHero: {fileID: 0}
+  SelectedHero: {fileID: 1528828335120861223, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
 --- !u!1 &1149877622
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
+    public UnitManager UnitManager;
+
+    public GameObject player;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +27,9 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         //GenerateGrid();
+        Tile playerTile = GetHeroSpawnTile();
+        player = Instantiate(UnitManager.SelectedHero.gameObject, playerTile.transform.position, Quaternion.identity);
+
     }
 
     public void GenerateGrid()
