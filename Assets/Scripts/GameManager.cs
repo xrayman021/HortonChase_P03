@@ -14,11 +14,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        ChangeState(GameState.GenerateGrid);
     }
 
     void Start()
     {
-        ChangeState(GameState.GenerateGrid);
+        
     }
 
     public void ChangeState(GameState newState)

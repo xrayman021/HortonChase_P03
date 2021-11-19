@@ -26,10 +26,22 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
-        //GenerateGrid();
-        Tile playerTile = GetHeroSpawnTile();
+        GenerateGrid();
+        Tile playerTile;
+        GameObject[] allTiles = GameObject.FindGameObjectsWithTag("Tile");
+        Debug.Log(allTiles.Length);
+        playerTile = allTiles[Random.Range(0, allTiles.Length-1)].GetComponent<Tile>();
+        while (true)
+        {
+            playerTile = allTiles[Random.Range(0, allTiles.Length-1)].GetComponent<Tile>();
+            if(playerTile.transform.position.y <= 5 && playerTile.Walkable)
+            {
+                break;
+            }
+        }
         player = Instantiate(UnitManager.SelectedHero.gameObject, playerTile.transform.position, Quaternion.identity);
-
+        player.transform.Translate(0, 0, -0.5f);
+        player.transform.Rotate(90, 0, 0);
     }
 
     public void GenerateGrid()
@@ -58,7 +70,7 @@ public class GridManager : MonoBehaviour
 
     public Tile GetHeroSpawnTile()
     {
-        return _tiles.Where(t => t.Key.x < _width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
+        return _tiles.Where(t => t.Key.x < Mathf.Ceil(_width / 2) && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
     }
 
     public Tile GetEnemySpawnTile()
