@@ -27,6 +27,7 @@ public abstract class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
+        MenuManager.Instance.ShowTileInfo(null);
     }
 
     private void OnMouseDown()
