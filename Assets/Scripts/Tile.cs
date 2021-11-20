@@ -65,7 +65,14 @@ public abstract class Tile : MonoBehaviour
     {
         if (unit.OccupiedTile != null) unit.OccupiedTile.OccupiedUnit = null;
         unit.transform.position = transform.position;
+        unit.transform.Translate(0, 0, -0.5f);
+        unit.transform.Rotate(90, 0, 0);
         OccupiedUnit = unit;
         unit.OccupiedTile = this;
+    }
+
+    private void Update()
+    {
+        Debug.Log(UnitManager.Instance.SelectedHero);
     }
 }

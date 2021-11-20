@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
 
     public UnitManager UnitManager;
 
-    public GameObject player;
+    //public GameObject player;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
-        Tile playerTile;
+        /*Tile playerTile;
         GameObject[] allTiles = GameObject.FindGameObjectsWithTag("Tile");
         Debug.Log(allTiles.Length);
         playerTile = allTiles[Random.Range(0, allTiles.Length-1)].GetComponent<Tile>();
@@ -38,10 +38,22 @@ public class GridManager : MonoBehaviour
             {
                 break;
             }
+        }*/
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Hero");
+        //player = Instantiate(UnitManager.SelectedHero.gameObject, playerTile.transform.position, Quaternion.identity);
+        foreach (GameObject P in Players)
+        {
+            P.transform.Translate(0, 0, -0.5f);
+            P.transform.Rotate(90, 0, 0);
         }
-        player = Instantiate(UnitManager.SelectedHero.gameObject, playerTile.transform.position, Quaternion.identity);
-        player.transform.Translate(0, 0, -0.5f);
-        player.transform.Rotate(90, 0, 0);
+
+
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        /*foreach(GameObject E in Enemies)
+        {
+            E.transform.Translate(0, 0, -0.5f);
+            E.transform.Rotate(90, 0, 0);
+        }*/
     }
 
     public void GenerateGrid()
