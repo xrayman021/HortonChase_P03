@@ -8,17 +8,23 @@ public class Tile2 : MonoBehaviour
     public GameObject[] costumes;
     public string[] labels;
     public bool walkable;
-    public GameObject occupier;
+    public GameObject occupier = null;
+    private GameObject currentcostume;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void Initialize(int newType, bool newWalkable)
     {
-        Instantiate(costumes[type]);
+        type = newType;
+        walkable = newWalkable;
+        currentcostume = Instantiate(costumes[type], this.transform.position, this.transform.rotation);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Change(int newType, bool newWalkable)
     {
-        
+        type = newType;
+        walkable = newWalkable;
+        Destroy(currentcostume);
+        currentcostume = Instantiate(costumes[type], this.transform.position, this.transform.rotation);
     }
+
 }
