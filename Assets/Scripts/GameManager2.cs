@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
@@ -13,10 +14,22 @@ public class GameManager2 : MonoBehaviour
     public List<GameObject> activePlayerUnits;
     public GameObject mouseOver;
     public GameObject currentlySelected;
+    public static bool playerTurn;
+    public Button endTurn;
+    public Text displayTurn;
+
+
+    void EndTurn()
+    {
+        playerTurn = false;
+        displayTurn.text = "Enemy Turn";
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        displayTurn.text = "Player Turn";
+        endTurn.onClick.AddListener(EndTurn);
         tiles = new GameObject[width, height];
         for (int w = 0; w < width; w++)
         {
@@ -143,6 +156,38 @@ public class GameManager2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            mouseOver = hit.transform.gameObject;
+        }
+        else
+        {
+            mouseOver = null;
+        }
+        if(currentlySelected != null && currentlySelected.tag == "Tile")
+        {
+            currentlySelected = null;
+        }
+        if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null)
+        {
+            currentlySelected = mouseOver;
+
+        }
+        if (currentlySelected != null && currentlySelected.tag == "Hero" && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("hero selected");
+            if(mouseOver.tag == "Tile")
+            {
+                Debug.Log("tile selected");
+                PlayerUnit p = currentlySelected.GetComponent<PlayerUnit>();
+                //p.destination = mouseOver.transform.position;
+                Tile2 t = mouseOver.GetComponent<Tile2>();
+                t.occupier = currentlySelected;
+                p.Move(t);
+                currentlySelected = null;
+            }
+        }
     }
 }
