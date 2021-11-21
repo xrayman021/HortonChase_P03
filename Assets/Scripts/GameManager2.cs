@@ -27,10 +27,19 @@ public class GameManager2 : MonoBehaviour
             }
         }
 
+        int passable = Random.Range(0,width);
+
         for (int w = 0; w < width; w++)
         {
             for (int h = 0; h < height; h++)
             {
+                if (w == passable) 
+                {
+                    Tile2 curtile = tiles[w, h].GetComponent<Tile2>();
+                    curtile.Change(0, true);
+                }
+                
+
                 List<GameObject> adjacent = new List<GameObject>();
                 if (w == 0 && h == 0)
                 {
@@ -94,17 +103,20 @@ public class GameManager2 : MonoBehaviour
                     if (curtile.walkable) 
                     {
                         haswalkable = true;
-                        break;
                     }
                 }
 
                 if (haswalkable==false) 
                 {
-                    GameObject randchoice = adjacent[Random.Range(0, adjacent.Count)];
-                    Tile2 thetile = randchoice.GetComponent<Tile2>();
-                    thetile.Change(0, true);
+                    foreach (GameObject t in adjacent)
+                    {
+                        Tile2 thetile = t.GetComponent<Tile2>();
+                        thetile.Change(0, true);
+                    }
 
                 }
+
+
 
                 
 
