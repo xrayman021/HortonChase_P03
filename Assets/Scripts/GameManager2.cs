@@ -42,17 +42,68 @@ public class GameManager2 : MonoBehaviour
                     adjacent.Add(tiles[w + 1, h]);
                     adjacent.Add(tiles[w, h - 1]);
                 }
+                else if (w == width - 1 && h == 0)
+                {
+                    adjacent.Add(tiles[w - 1, h]);
+                    adjacent.Add(tiles[w, h + 1]);
+                }
+                else if (w == width - 1 && h == height - 1)
+                {
+                    adjacent.Add(tiles[w, h - 1]);
+                    adjacent.Add(tiles[w - 1, h]);
+                }
+                else if (h == 0)
+                {
+                    adjacent.Add(tiles[w + 1, h]);
+                    adjacent.Add(tiles[w - 1, h]);
+                    adjacent.Add(tiles[w, h + 1]);
+                }
+                else if (h == height - 1)
+                {
+                    adjacent.Add(tiles[w + 1, h]);
+                    adjacent.Add(tiles[w - 1, h]);
+                    adjacent.Add(tiles[w, h - 1]);
+                }
+                else if (w == 0)
+                {
+                    adjacent.Add(tiles[w, h - 1]);
+                    adjacent.Add(tiles[w, h + 1]);
+                    adjacent.Add(tiles[w + 1, h]);
+                }
+                else if (w == width - 1)
+                {
+                    adjacent.Add(tiles[w, h - 1]);
+                    adjacent.Add(tiles[w, h + 1]);
+                    adjacent.Add(tiles[w - 1, h]);
+                }
+                else 
+                {
+                    adjacent.Add(tiles[w + 1, h + 1]);
+                    adjacent.Add(tiles[w - 1, h + 1]);
+                    adjacent.Add(tiles[w - 1, h - 1]);
+                    adjacent.Add(tiles[w + 1, h - 1]);
+                }
 
 
-                bool hasgrass = false;
+
+
+                bool haswalkable = false;
                 foreach (GameObject t in adjacent) 
                 {
                     Tile2 curtile = t.GetComponent<Tile2>();
-                    if (curtile.labels[curtile.type] == "Grass") 
+                    if (curtile.walkable) 
                     {
-                        hasgrass = true;
+                        haswalkable = true;
                         break;
                     }
+                }
+
+                if (haswalkable==false) 
+                {
+                    GameObject randchoice = adjacent[Random.Range(0, adjacent.Count)];
+                    Tile2 thetile = randchoice.GetComponent<Tile2>();
+                    thetile.Change(0, true);
+
                 }
 
                 
