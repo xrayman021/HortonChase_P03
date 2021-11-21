@@ -30,7 +30,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void Move(Tile2 newLocation)
     {
-        if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range)
+        if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn)
         {
             Debug.Log("moving");
             Debug.Log(newLocation);
