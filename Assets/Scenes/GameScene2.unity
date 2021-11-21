@@ -315,3 +315,8 @@ MonoBehaviour:
   width: 16
   height: 10
   tile: {fileID: 2830878183208889851, guid: ebaef03493603ed44901645d565e396f, type: 3}
+  playerUnits: 0
+  enemyUnits: 0
+  playerUnitTypes:
+  - {fileID: 2851162477878545105, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+  activePlayerUnits: []

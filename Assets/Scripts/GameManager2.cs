@@ -7,6 +7,13 @@ public class GameManager2 : MonoBehaviour
     public int width, height;
     public GameObject tile;
     public GameObject[,] tiles;
+    public int playerUnits;
+    public int enemyUnits;
+    public GameObject[] playerUnitTypes;
+    public List<GameObject> activePlayerUnits;
+    public GameObject mouseOver;
+    public GameObject currentlySelected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -121,6 +128,14 @@ public class GameManager2 : MonoBehaviour
                 
 
             }
+        }
+
+        foreach(GameObject unit in playerUnitTypes)
+        {
+            Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(0, height/2)].GetComponent<Tile2>();
+            GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
+            currentUnit.GetComponent<PlayerUnit>().location = randomTile;
+            currentUnit.transform.Translate(0, 1.5f, 0);
         }
 
     }
