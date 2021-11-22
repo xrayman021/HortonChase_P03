@@ -18,23 +18,28 @@ public class PlayerUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(this.transform.position, destination) > 1.5f)
+        //Debug.Log(canMove);
+        if (Vector3.Distance(this.transform.position, destination) > 1.5f)
         {
             //Vector3.MoveTowards(this.transform.position, destination, speed * Time.deltaTime);
             transform.LookAt(destination);
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             transform.Translate(0, 0, speed * Time.deltaTime);
+            
 
         }
     }
 
     public void Move(Tile2 newLocation)
     {
+        Debug.Log(GameManager2.playerTurn);
         if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn)
         {
             Debug.Log("moving");
             Debug.Log(newLocation);
+            location.occupier = null;
             location = newLocation;
+            location.occupier = this.gameObject;
             canMove = false;
             destination = newLocation.transform.position;
             Debug.Log(destination);
@@ -44,4 +49,12 @@ public class PlayerUnit : MonoBehaviour
             Debug.Log("Can't move");
         }
     }
+
+    public void Attack(GameObject opponent)
+    {
+        EnemyUnit enemy = opponent.GetComponent<EnemyUnit>();
+        enemy.health -= 1;
+    }
+
+
 }

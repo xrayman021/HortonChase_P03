@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {fileID: 0}
-  range: 0
+  range: 3
   canMove: 1
   destination: {x: 0, y: 0, z: 0}
-  speed: 0
+  speed: 5
+  attack_player_at: 4
 --- !u!1001 &6598142492425806249
 PrefabInstance:
   m_ObjectHideFlags: 0

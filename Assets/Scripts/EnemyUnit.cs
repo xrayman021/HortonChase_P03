@@ -10,9 +10,10 @@ public class EnemyUnit : MonoBehaviour
     public Vector3 destination;
     public float speed;
     GameObject[,] tiles = GameManager2.tiles;
-    int height = GameManager2.width;
-    int width = GameManager2.height;
+    int height = GameManager2.height;
+    int width = GameManager2.width;
     public float attack_player_at = 4;
+    public int health = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,50 +31,54 @@ public class EnemyUnit : MonoBehaviour
             transform.Translate(0, 0, speed * Time.deltaTime);
 
         }
+        if(health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     List<GameObject> getAdjacent(int w, int h)
     {
         List<GameObject> adjacent = new List<GameObject>();
-        if (w == 0 && h == 0)
+        if (w == 0 && h == 0) // upper left
         {
             adjacent.Add(tiles[w + 1, h]);
             adjacent.Add(tiles[w, h + 1]);
         }
-        else if (w == 0 && h == height - 1)
+        else if (w == 0 && h == height - 1) // lower left
         {
             adjacent.Add(tiles[w + 1, h]);
             adjacent.Add(tiles[w, h - 1]);
         }
-        else if (w == width - 1 && h == 0)
+        else if (w == width - 1 && h == 0) // upper right
         {
             adjacent.Add(tiles[w - 1, h]);
             adjacent.Add(tiles[w, h + 1]);
         }
-        else if (w == width - 1 && h == height - 1)
+        else if (w == width - 1 && h == height - 1) // lower right
         {
             adjacent.Add(tiles[w, h - 1]);
             adjacent.Add(tiles[w - 1, h]);
         }
-        else if (h == 0)
+        else if (h == 0) // top
         {
             adjacent.Add(tiles[w + 1, h]);
             adjacent.Add(tiles[w - 1, h]);
             adjacent.Add(tiles[w, h + 1]);
         }
-        else if (h == height - 1)
+        else if (h == height - 1) // bottom
         {
             adjacent.Add(tiles[w + 1, h]);
             adjacent.Add(tiles[w - 1, h]);
             adjacent.Add(tiles[w, h - 1]);
         }
-        else if (w == 0)
+        else if (w == 0) // left
         {
             adjacent.Add(tiles[w, h - 1]);
             adjacent.Add(tiles[w, h + 1]);
             adjacent.Add(tiles[w + 1, h]);
         }
-        else if (w == width - 1)
+        else if (w == width - 1) // right
         {
             adjacent.Add(tiles[w, h - 1]);
             adjacent.Add(tiles[w, h + 1]);
@@ -81,6 +86,8 @@ public class EnemyUnit : MonoBehaviour
         }
         else
         {
+            Debug.Log("w: " + w);
+            Debug.Log("h: " + h);
             adjacent.Add(tiles[w + 1, h + 1]);
             adjacent.Add(tiles[w - 1, h + 1]);
             adjacent.Add(tiles[w - 1, h - 1]);
@@ -130,49 +137,81 @@ public class EnemyUnit : MonoBehaviour
 
     public void Move()
     {
-        GameObject closest = ClosestObjectWithTag("Hero");
-        Tile2 newLocation;
-
-        if (Vector3.Distance(transform.position, closest.transform.position) < attack_player_at)
+        List<GameObject> adj = getAdjacent((int)location.transform.position.x, (int)location.transform.position.z);
+        int count = 0;
+        foreach(GameObject g in adj)
         {
-            List<GameObject> adj = getAdjacent((int)location.transform.position.x, (int)location.transform.position.z);
-            GameObject best = adj[0];
-            float best_dist = Vector3.Distance(adj[0].transform.position, closest.transform.position);
-            foreach (GameObject t in adj) 
+            Tile2 t = g.GetComponent<Tile2>();
+            if(t.occupier != null)
             {
-                if (Vector3.Distance(t.transform.position,closest.transform.position) < best_dist) 
+                count += 1;
+            }
+        }
+        if(count == adj.Count)
+        {
+            canMove = false;
+            Debug.Log("No Where To GO!!!!!!!!!!!!!!!!!!");
+        }
+        else
+        {
+            GameObject closest = ClosestObjectWithTag("Hero");
+            Tile2 newLocation;
+
+            if (Vector3.Distance(transform.position, closest.transform.position) < attack_player_at)
+            {
+                
+                GameObject best = adj[0];
+                float best_dist = Vector3.Distance(adj[0].transform.position, closest.transform.position);
+                foreach (GameObject t in adj)
                 {
-                    best = t;
+                    if (Vector3.Distance(t.transform.position, closest.transform.position) < best_dist)
+                    {
+                        best = t;
+                    }
+                }
+                newLocation = best.GetComponent<Tile2>();
+                if (newLocation.occupier != null)
+                {
+                    GameObject choice = adj[Random.Range(0, adj.Count)];
+                    newLocation = choice.GetComponent<Tile2>();
+                    while (newLocation.occupier != null)
+                    {
+                        choice = adj[Random.Range(0, adj.Count)];
+                        newLocation = choice.GetComponent<Tile2>();
+                    } 
+                }
+
+            }
+            else
+            {
+                
+                GameObject choice = adj[Random.Range(0, adj.Count)];
+                newLocation = choice.GetComponent<Tile2>();
+                while (newLocation.occupier != null)
+                {
+                    choice = adj[Random.Range(0, adj.Count)];
+                    newLocation = choice.GetComponent<Tile2>();
                 }
             }
-            newLocation = best.GetComponent<Tile2>();
-            
-        }
-        else
-        {
-            List<GameObject> adj = getAdjacent((int)location.transform.position.x, (int)location.transform.position.z);
-            GameObject choice = adj[Random.Range(0, adj.Count)];
-            newLocation = choice.GetComponent<Tile2>();
-            while (newLocation.occupier != null)
+
+            Debug.Log(this.transform.position + " : " + Vector3.Distance(this.transform.position, newLocation.transform.position));
+
+            if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn == false)
             {
-                choice = adj[Random.Range(0, adj.Count)];
-                newLocation = choice.GetComponent<Tile2>();
+                Debug.Log("Enemy moving");
+                Debug.Log(newLocation);
+                location.occupier = null;
+                location = newLocation;
+                location.occupier = this.gameObject;
+                canMove = false;
+                destination = newLocation.transform.position;
+                Debug.Log(destination);
+            }
+            else
+            {
+                Debug.Log("Can't move");
             }
         }
-
         
-        if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn == false)
-        {
-            Debug.Log("moving");
-            Debug.Log(newLocation);
-            location = newLocation;
-            canMove = false;
-            destination = newLocation.transform.position;
-            Debug.Log(destination);
-        }
-        else
-        {
-            Debug.Log("Can't move");
-        }
     }
 }

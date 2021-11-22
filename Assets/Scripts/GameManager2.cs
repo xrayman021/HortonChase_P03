@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
-    public static int width, height;
+    public static int width = 16;
+    public static int height = 10;
     public GameObject tile;
     public static GameObject[,] tiles;
     public int playerUnits;
@@ -16,7 +17,7 @@ public class GameManager2 : MonoBehaviour
     public List<GameObject> activeEnemyUnits;
     public GameObject mouseOver;
     public GameObject currentlySelected;
-    public static bool playerTurn;
+    public static bool playerTurn = true;
     public Button endTurn;
     public Text displayTurn;
 
@@ -25,6 +26,69 @@ public class GameManager2 : MonoBehaviour
     {
         playerTurn = false;
         displayTurn.text = "Enemy Turn";
+        foreach (GameObject g in activeEnemyUnits) 
+        {
+            g.GetComponent<EnemyUnit>().canMove = true;
+        }
+    }
+
+    List<GameObject> getAdjacent(int w, int h)
+    {
+        List<GameObject> adjacent = new List<GameObject>();
+        if (w == 0 && h == 0) // upper left
+        {
+            adjacent.Add(tiles[w + 1, h]);
+            adjacent.Add(tiles[w, h + 1]);
+        }
+        else if (w == 0 && h == height - 1) // lower left
+        {
+            adjacent.Add(tiles[w + 1, h]);
+            adjacent.Add(tiles[w, h - 1]);
+        }
+        else if (w == width - 1 && h == 0) // upper right
+        {
+            adjacent.Add(tiles[w - 1, h]);
+            adjacent.Add(tiles[w, h + 1]);
+        }
+        else if (w == width - 1 && h == height - 1) // lower right
+        {
+            adjacent.Add(tiles[w, h - 1]);
+            adjacent.Add(tiles[w - 1, h]);
+        }
+        else if (h == 0) // top
+        {
+            adjacent.Add(tiles[w + 1, h]);
+            adjacent.Add(tiles[w - 1, h]);
+            adjacent.Add(tiles[w, h + 1]);
+        }
+        else if (h == height - 1) // bottom
+        {
+            adjacent.Add(tiles[w + 1, h]);
+            adjacent.Add(tiles[w - 1, h]);
+            adjacent.Add(tiles[w, h - 1]);
+        }
+        else if (w == 0) // left
+        {
+            adjacent.Add(tiles[w, h - 1]);
+            adjacent.Add(tiles[w, h + 1]);
+            adjacent.Add(tiles[w + 1, h]);
+        }
+        else if (w == width - 1) // right
+        {
+            adjacent.Add(tiles[w, h - 1]);
+            adjacent.Add(tiles[w, h + 1]);
+            adjacent.Add(tiles[w - 1, h]);
+        }
+        else
+        {
+            Debug.Log("w: " + w);
+            Debug.Log("h: " + h);
+            adjacent.Add(tiles[w + 1, h + 1]);
+            adjacent.Add(tiles[w - 1, h + 1]);
+            adjacent.Add(tiles[w - 1, h - 1]);
+            adjacent.Add(tiles[w + 1, h - 1]);
+        }
+        return adjacent;
     }
 
     // Start is called before the first frame update
@@ -147,6 +211,7 @@ public class GameManager2 : MonoBehaviour
 
         foreach(GameObject unit in playerUnitTypes)
         {
+            Debug.Log(tiles.Length);
             Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(0, height/2)].GetComponent<Tile2>();
             GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
             randomTile.occupier = currentUnit;
@@ -209,12 +274,25 @@ public class GameManager2 : MonoBehaviour
                 p.Move(t);
                 currentlySelected = null;
             }
+            if (mouseOver.tag == "Enemy")
+            {
+
+            }
         }
 
         if(playerTurn == false)
         {
-
+            foreach(GameObject enemy in activeEnemyUnits)
+            {
+                enemy.GetComponent<EnemyUnit>().Move();
+            }
+            playerTurn = true;
+            foreach(GameObject player in activePlayerUnits)
+            {
+                player.GetComponent<PlayerUnit>().canMove = true;
+            }
         }
+
 
     }
 
