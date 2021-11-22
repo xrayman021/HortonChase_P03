@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6827826663536461430
+--- !u!114 &5946423725239683849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935162042683026296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a2cb401ca197243824bd17a0f024e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 25553a02a3240ec46a4bbb7464580da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: Thug
-  OccupiedTile: {fileID: 0}
-  Faction: 0
+  location: {fileID: 0}
+  range: 0
+  canMove: 1
+  destination: {x: 0, y: 0, z: 0}
+  speed: 0
 --- !u!1001 &6598142492425806249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,6 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1528828335120861223, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+    - {fileID: 3434361795573159910, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
 --- !u!1 &8935162042683026296 stripped
 GameObject:

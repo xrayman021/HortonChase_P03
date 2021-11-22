@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
-    public int width, height;
+    public static int width, height;
     public GameObject tile;
-    public GameObject[,] tiles;
+    public static GameObject[,] tiles;
     public int playerUnits;
     public int enemyUnits;
     public GameObject[] playerUnitTypes;
     public List<GameObject> activePlayerUnits;
+    public GameObject[] enemyUnitTypes;
+    public List<GameObject> activeEnemyUnits;
     public GameObject mouseOver;
     public GameObject currentlySelected;
     public static bool playerTurn;
@@ -147,10 +149,29 @@ public class GameManager2 : MonoBehaviour
         {
             Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(0, height/2)].GetComponent<Tile2>();
             GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
+            randomTile.occupier = currentUnit;
             currentUnit.GetComponent<PlayerUnit>().location = randomTile;
             currentUnit.transform.Translate(0, 1.5f, 0);
+            activePlayerUnits.Add(currentUnit);
         }
 
+        for (int i = 0; i < enemyUnits; i++) 
+        {
+            foreach (GameObject unit in enemyUnitTypes)
+            {
+                Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(height / 2, height)].GetComponent<Tile2>();
+                while (randomTile.occupier != null)
+                {
+                    randomTile = tiles[Random.Range(0, width), Random.Range(height / 2, height)].GetComponent<Tile2>();
+                }
+                GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
+                randomTile.occupier = currentUnit;
+                currentUnit.GetComponent<EnemyUnit>().location = randomTile;
+                currentUnit.transform.Translate(0, 1.5f, 0);
+                activeEnemyUnits.Add(currentUnit);
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -189,5 +210,14 @@ public class GameManager2 : MonoBehaviour
                 currentlySelected = null;
             }
         }
+
+        if(playerTurn == false)
+        {
+
+        }
+
     }
+
+
+
 }
