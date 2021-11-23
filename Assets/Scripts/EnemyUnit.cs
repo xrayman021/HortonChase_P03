@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyUnit : MonoBehaviour
-{
+{ 
     public Tile2 location;
     public int range;
     public bool canMove = true;
@@ -33,7 +33,9 @@ public class EnemyUnit : MonoBehaviour
         }
         if(health <= 0)
         {
+            Debug.Log("Enemy Died");
             Destroy(this.gameObject);
+
         }
     }
 
@@ -159,7 +161,7 @@ public class EnemyUnit : MonoBehaviour
 
             if (Vector3.Distance(transform.position, closest.transform.position) < attack_player_at)
             {
-                
+                Debug.Log("Chasing the player");
                 GameObject best = adj[0];
                 float best_dist = Vector3.Distance(adj[0].transform.position, closest.transform.position);
                 foreach (GameObject t in adj)
@@ -194,18 +196,16 @@ public class EnemyUnit : MonoBehaviour
                 }
             }
 
-            Debug.Log(this.transform.position + " : " + Vector3.Distance(this.transform.position, newLocation.transform.position));
+           
 
             if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn == false)
             {
-                Debug.Log("Enemy moving");
-                Debug.Log(newLocation);
+                
                 location.occupier = null;
                 location = newLocation;
                 location.occupier = this.gameObject;
                 canMove = false;
                 destination = newLocation.transform.position;
-                Debug.Log(destination);
             }
             else
             {
@@ -214,4 +214,16 @@ public class EnemyUnit : MonoBehaviour
         }
         
     }
+
+    public void Attack(GameObject opponent)
+    {
+        if (GameManager2.playerTurn==false && canMove) 
+        {
+            PlayerUnit unit = opponent.GetComponent<PlayerUnit>();
+            unit.health -= 1;
+            canMove = false;
+        }
+        
+    }
+
 }

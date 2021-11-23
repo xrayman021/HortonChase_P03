@@ -329,7 +329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 204}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &868919495
@@ -739,13 +739,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126519703}
-  m_LocalRotation: {x: 0.10358852, y: -0, z: -0, w: 0.99462026}
-  m_LocalPosition: {x: 8, y: 4, z: -5}
+  m_LocalRotation: {x: 0.23520517, y: -0, z: -0, w: 0.97194576}
+  m_LocalPosition: {x: 8, y: 5.46, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 11.892, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.207, y: 0, z: 0}
 --- !u!114 &2126519707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,10 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696153b1766261c42a35726f51b2739e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 10
   tile: {fileID: 2830878183208889851, guid: ebaef03493603ed44901645d565e396f, type: 3}
-  playerUnits: 0
+  playerUnits: 5
   enemyUnits: 5
   playerUnitTypes:
   - {fileID: 2851162477878545105, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}

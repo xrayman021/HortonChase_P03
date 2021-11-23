@@ -28,7 +28,11 @@ public class GameManager2 : MonoBehaviour
         displayTurn.text = "Enemy Turn";
         foreach (GameObject g in activeEnemyUnits) 
         {
-            g.GetComponent<EnemyUnit>().canMove = true;
+            if (g != null) 
+            {
+                g.GetComponent<EnemyUnit>().canMove = true;
+            }
+           
         }
     }
 
@@ -209,19 +213,27 @@ public class GameManager2 : MonoBehaviour
             }
         }
 
-        foreach(GameObject unit in playerUnitTypes)
+        for (int i = 0; i < playerUnits; i++)
         {
-            Debug.Log(tiles.Length);
-            Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(0, height/2)].GetComponent<Tile2>();
-            GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
-            randomTile.occupier = currentUnit;
-            currentUnit.GetComponent<PlayerUnit>().location = randomTile;
-            currentUnit.transform.Translate(0, 1.5f, 0);
-            activePlayerUnits.Add(currentUnit);
+            foreach (GameObject unit in playerUnitTypes)
+            {
+                Debug.Log(tiles.Length);
+                Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(0, height / 2)].GetComponent<Tile2>();
+                while (randomTile.occupier != null)
+                {
+                    randomTile = tiles[Random.Range(0, width), Random.Range(0, height/2)].GetComponent<Tile2>();
+                }
+                GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
+                randomTile.occupier = currentUnit;
+                currentUnit.GetComponent<PlayerUnit>().location = randomTile;
+                currentUnit.transform.Translate(0, 1.5f, 0);
+                activePlayerUnits.Add(currentUnit);
+            }
         }
 
         for (int i = 0; i < enemyUnits; i++) 
         {
+            Debug.Log("tried to make an enemy");
             foreach (GameObject unit in enemyUnitTypes)
             {
                 Tile2 randomTile = tiles[Random.Range(0, width), Random.Range(height / 2, height)].GetComponent<Tile2>();
@@ -230,6 +242,7 @@ public class GameManager2 : MonoBehaviour
                     randomTile = tiles[Random.Range(0, width), Random.Range(height / 2, height)].GetComponent<Tile2>();
                 }
                 GameObject currentUnit = Instantiate(unit, randomTile.transform.position, Quaternion.identity);
+
                 randomTile.occupier = currentUnit;
                 currentUnit.GetComponent<EnemyUnit>().location = randomTile;
                 currentUnit.transform.Translate(0, 1.5f, 0);
@@ -252,42 +265,83 @@ public class GameManager2 : MonoBehaviour
         {
             mouseOver = null;
         }
-        if(currentlySelected != null && currentlySelected.tag == "Tile")
+        if(currentlySelected != null)
         {
-            currentlySelected = null;
+            if (currentlySelected.tag == "Tile") 
+            {
+                currentlySelected = null;
+            }
         }
         if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null)
         {
             currentlySelected = mouseOver;
-
         }
         if (currentlySelected != null && currentlySelected.tag == "Hero" && Input.GetMouseButtonDown(0))
         {
             Debug.Log("hero selected");
-            if(mouseOver.tag == "Tile")
+            if(mouseOver != null && mouseOver.tag == "Tile")
             {
                 Debug.Log("tile selected");
                 PlayerUnit p = currentlySelected.GetComponent<PlayerUnit>();
                 //p.destination = mouseOver.transform.position;
                 Tile2 t = mouseOver.GetComponent<Tile2>();
-                t.occupier = currentlySelected;
                 p.Move(t);
                 currentlySelected = null;
             }
-            if (mouseOver.tag == "Enemy")
+            if (mouseOver != null && mouseOver.tag == "Enemy")
             {
+                Debug.Log("Attack attempted");
+                Debug.Log(currentlySelected);
+                PlayerUnit unit = currentlySelected.GetComponent<PlayerUnit>();
+                if (Vector3.Distance(mouseOver.transform.position,currentlySelected.transform.position) < unit.range) 
+                {
+                    unit.Attack(mouseOver);
+                }
 
+
+               /* List<GameObject> adj = getAdjacent((int)currentlySelected.transform.position.x, (int)currentlySelected.transform.position.z);
+                Debug.Log(adj);
+                bool foundit = false;
+                foreach (GameObject g in adj) 
+                {
+                    Tile2 t = g.GetComponent<Tile2>();
+                    Debug.Log(t.occupier);
+                    if (t.occupier == mouseOver) 
+                    {
+                        currentlySelected.GetComponent<PlayerUnit>().Attack(mouseOver);
+                        Debug.Log("Attack Successful");
+                    }
+                }*/
+                currentlySelected = null;
             }
         }
 
         if(playerTurn == false)
         {
+            
             foreach(GameObject enemy in activeEnemyUnits)
             {
-                enemy.GetComponent<EnemyUnit>().Move();
+                if (enemy != null) 
+                {
+                    EnemyUnit eunit = enemy.GetComponent<EnemyUnit>();
+                    GameObject closest = eunit.ClosestObjectWithTag("Hero");
+                    if (Vector3.Distance(eunit.transform.position,closest.transform.position) <= eunit.range) 
+                    {
+                        eunit.Attack(closest);
+                        Debug.Log("Enemy Attacked Hero");
+                        Debug.Log("Hero health: " + closest.GetComponent<PlayerUnit>().health);
+                    }
+                    else
+                    {
+                        eunit.Move();
+                    }
+                    
+                }
+                
             }
             playerTurn = true;
-            foreach(GameObject player in activePlayerUnits)
+            displayTurn.text = "Player Turn";
+            foreach (GameObject player in activePlayerUnits)
             {
                 player.GetComponent<PlayerUnit>().canMove = true;
             }
