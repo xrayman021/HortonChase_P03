@@ -13,20 +13,23 @@ public class EnemyUnit : MonoBehaviour
     int height = GameManager2.height;
     int width = GameManager2.width;
     public float attack_player_at = 4;
-    public int maxHealth = 3;
-    public int health;
-    public HealthBar healthBar;
+    public int health = 3;
+    public ProgressBar Pb;
+    [SerializeField] AudioClip _Footsteps;
+    [SerializeField] AudioClip _AttackSound;
+
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
-        health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Pb.BarValue = health;
         if (Vector3.Distance(this.transform.position, destination) > 1.5f)
         {
             //Vector3.MoveTowards(this.transform.position, destination, speed * Time.deltaTime);
@@ -155,11 +158,13 @@ public class EnemyUnit : MonoBehaviour
         }
         if(count == adj.Count)
         {
+            
             canMove = false;
             Debug.Log("No Where To GO!!!!!!!!!!!!!!!!!!");
         }
         else
         {
+            AudioHelper.PlayClip2D(_Footsteps, 1f);
             GameObject closest = ClosestObjectWithTag("Hero");
             Tile2 newLocation;
 
@@ -204,7 +209,7 @@ public class EnemyUnit : MonoBehaviour
 
             if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn == false)
             {
-                
+                AudioHelper.PlayClip2D(_Footsteps, 1f);
                 location.occupier = null;
                 location = newLocation;
                 location.occupier = this.gameObject;
@@ -223,9 +228,10 @@ public class EnemyUnit : MonoBehaviour
     {
         if (GameManager2.playerTurn==false && canMove) 
         {
+            AudioHelper.PlayClip2D(_AttackSound, 1f);
             PlayerUnit unit = opponent.GetComponent<PlayerUnit>();
-            unit.health -= 1;
-            healthBar.SetHealth(health);
+            unit.health -= 10;
+            
             canMove = false;
         }
         

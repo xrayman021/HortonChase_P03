@@ -10,9 +10,8 @@ public class PlayerUnit : MonoBehaviour
     public bool canMove = true;
     public Vector3 destination;
     public float speed;
-    public int maxHealth = 10;
-    public int health;
-    public HealthBar healthBar;
+    public int health = 3;
+    public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
 
@@ -20,13 +19,13 @@ public class PlayerUnit : MonoBehaviour
     void Start()
     {
         destination = this.transform.position;
-        health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Pb.BarValue = health;
         //Debug.Log(canMove);
         if (Vector3.Distance(this.transform.position, destination) > 1.5f)
         {
@@ -66,8 +65,8 @@ public class PlayerUnit : MonoBehaviour
         {
             AudioHelper.PlayClip2D(_AttackSound, 1f);
             EnemyUnit enemy = opponent.GetComponent<EnemyUnit>();
-            enemy.health -= 1;
-            healthBar.SetHealth(health);
+            enemy.health -= 10;
+            
             canMove = false;
             Debug.Log("enemy health: " + enemy.health);
         }

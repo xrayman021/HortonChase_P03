@@ -17,10 +17,11 @@ MonoBehaviour:
   canMove: 1
   destination: {x: 0, y: 0, z: 0}
   speed: 5
-  attack_player_at: 100
-  maxHealth: 3
-  health: 5
-  healthBar: {fileID: 6029021972941360621, guid: a272eb9f4468dce45a066faec5976585, type: 3}
+  attack_player_at: 1
+  health: 100
+  Pb: {fileID: 9107410622401726350}
+  _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
+  _AttackSound: {fileID: 8300000, guid: 6ba4b065782b3c24481ac7b6dedde64b, type: 3}
 --- !u!1001 &6598142492425806249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32,6 +33,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 074765f5728e4b943a4d29b82ae1c32f, type: 2}
+    - target: {fileID: 2685865914004272539, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685865914004272539, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 349a5d092ededeb43a683783cb5ea234, type: 3}
+    - target: {fileID: 2735173808484558375, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 349a5d092ededeb43a683783cb5ea234, type: 3}
     - target: {fileID: 2851162477878545105, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -93,3 +106,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2851162477878545105, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
   m_PrefabInstance: {fileID: 6598142492425806249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9107410622401726350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2735173808484558375, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+  m_PrefabInstance: {fileID: 6598142492425806249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
