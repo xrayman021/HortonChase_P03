@@ -29,7 +29,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 969358047900217778, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 074765f5728e4b943a4d29b82ae1c32f, type: 2}
     - target: {fileID: 1632008481535539044, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 074765f5728e4b943a4d29b82ae1c32f, type: 2}
+    - target: {fileID: 2572742431580837992, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 074765f5728e4b943a4d29b82ae1c32f, type: 2}
