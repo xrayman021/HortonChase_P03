@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 3566430657604083212}
   - component: {fileID: 3434361795573159910}
   - component: {fileID: 5728747372082125072}
+  - component: {fileID: 2170488086152124031}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Hero
@@ -143,6 +144,30 @@ CapsuleCollider:
   m_Height: 2.1170578
   m_Direction: 1
   m_Center: {x: 0, y: -0.019778252, z: 0}
+--- !u!95 &2170488086152124031
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851162477878545105}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+  m_Controller: {fileID: 9100000, guid: c4deabdde322ec64b92d7f26636a9d3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'Spine1'\n\tTransform 'Neck'\n\tTransform
+    'LeftUpLeg'\n\tTransform 'RightLeg'\n\tTransform 'LeftFoot'\n\tTransform 'RightArm'\n\tTransform
+    'LeftHand'\n\tTransform 'Spine2'\n\tTransform 'RightShoulder'\n\tand more ...\n\tFrom
+    animation clip 'mixamo.com'"
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6335358442258137371
 GameObject:
   m_ObjectHideFlags: 0
