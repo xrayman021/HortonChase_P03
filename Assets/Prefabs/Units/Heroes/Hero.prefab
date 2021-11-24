@@ -127,6 +127,7 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   speed: 5
   health: 100
+  isMoving: 0
   Pb: {fileID: 2735173808484558375}
   _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
   _AttackSound: {fileID: 8300000, guid: b10cebc82815c544aa1145e7adfc41b5, type: 3}
@@ -154,17 +155,12 @@ Animator:
   m_GameObject: {fileID: 2851162477878545105}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
-  m_Controller: {fileID: 9100000, guid: c4deabdde322ec64b92d7f26636a9d3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9309fb80266a0e04297102230e1a2a32, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'Spine1'\n\tTransform 'Neck'\n\tTransform
-    'LeftUpLeg'\n\tTransform 'RightLeg'\n\tTransform 'LeftFoot'\n\tTransform 'RightArm'\n\tTransform
-    'LeftHand'\n\tTransform 'Spine2'\n\tTransform 'RightShoulder'\n\tand more ...\n\tFrom
-    animation clip 'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -333,6 +329,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5116897903442120805, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00006283205
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116897903442120805, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.016955834
+      objectReference: {fileID: 0}
     - target: {fileID: 415287891258781815, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -341,10 +345,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: paladin_j_nordstrom
       objectReference: {fileID: 0}
+    - target: {fileID: 943223448204509391, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000018564487
+      objectReference: {fileID: 0}
+    - target: {fileID: 943223448204509391, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0077722026
+      objectReference: {fileID: 0}
     - target: {fileID: 3099756089343826349, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e3c47b03997aa6542af578fd47519e00, type: 2}
+    - target: {fileID: 8604454021593408753, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000421299
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604454021593408753, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0041437857
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
 --- !u!4 &1097195353020524078 stripped

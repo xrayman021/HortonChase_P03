@@ -11,6 +11,7 @@ public class PlayerUnit : MonoBehaviour
     public Vector3 destination;
     public float speed;
     public int health = 3;
+    public bool isMoving;
     public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
@@ -49,6 +50,7 @@ public class PlayerUnit : MonoBehaviour
         if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn && newLocation.occupier == null)
         {
             Debug.Log("Moved Success");
+            isMoving = true;
             AudioHelper.PlayClip2D(_Footsteps, 1f);
             location.occupier = null;
             location = newLocation;
@@ -59,6 +61,7 @@ public class PlayerUnit : MonoBehaviour
         else
         {
             Debug.Log("Can't move");
+            isMoving = false;
         }
     }
 
