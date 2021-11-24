@@ -6,15 +6,22 @@ public class PlayerUnit : MonoBehaviour
 {
     public Tile2 location;
     public int range;
+    public int attackRange;
     public bool canMove = true;
     public Vector3 destination;
     public float speed;
-    public int health = 10;
+    public int maxHealth = 10;
+    public int health;
+    public HealthBar healthBar;
+    [SerializeField] AudioClip _Footsteps;
+    [SerializeField] AudioClip _AttackSound;
 
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -40,6 +47,7 @@ public class PlayerUnit : MonoBehaviour
         if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn && newLocation.occupier == null)
         {
             Debug.Log("Moved Success");
+            AudioHelper.PlayClip2D(_Footsteps, 1f);
             location.occupier = null;
             location = newLocation;
             location.occupier = this.gameObject;
@@ -56,8 +64,10 @@ public class PlayerUnit : MonoBehaviour
     {
         if (canMove)
         {
+            AudioHelper.PlayClip2D(_AttackSound, 1f);
             EnemyUnit enemy = opponent.GetComponent<EnemyUnit>();
             enemy.health -= 1;
+            healthBar.SetHealth(health);
             canMove = false;
             Debug.Log("enemy health: " + enemy.health);
         }

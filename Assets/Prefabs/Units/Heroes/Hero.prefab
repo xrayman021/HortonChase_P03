@@ -128,10 +128,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {fileID: 0}
   range: 5
+  attackRange: 0
   canMove: 1
   destination: {x: 0, y: 0, z: 0}
   speed: 5
+  maxHealth: 10
   health: 10
+  healthBar: {fileID: 9143161081740010652, guid: 60ed531671a6e59439f6247821499edb, type: 3}
+  _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
+  _AttackSound: {fileID: 8300000, guid: b10cebc82815c544aa1145e7adfc41b5, type: 3}
 --- !u!136 &5728747372082125072
 CapsuleCollider:
   m_ObjectHideFlags: 0

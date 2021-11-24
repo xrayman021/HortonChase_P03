@@ -13,11 +13,15 @@ public class EnemyUnit : MonoBehaviour
     int height = GameManager2.height;
     int width = GameManager2.width;
     public float attack_player_at = 4;
-    public int health = 3;
+    public int maxHealth = 3;
+    public int health;
+    public HealthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -221,6 +225,7 @@ public class EnemyUnit : MonoBehaviour
         {
             PlayerUnit unit = opponent.GetComponent<PlayerUnit>();
             unit.health -= 1;
+            healthBar.SetHealth(health);
             canMove = false;
         }
         
