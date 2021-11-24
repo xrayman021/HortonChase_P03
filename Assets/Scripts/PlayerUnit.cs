@@ -14,12 +14,13 @@ public class PlayerUnit : MonoBehaviour
     public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
+    public static int playerNum = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
-        
+        playerNum = 5;
     }
 
     // Update is called once per frame
@@ -37,6 +38,8 @@ public class PlayerUnit : MonoBehaviour
         if (health<=0) 
         {
             transform.Translate(0, -Time.deltaTime, 0);
+            //Destroy(gameObject);
+            playerNum--;
         }
     }
 

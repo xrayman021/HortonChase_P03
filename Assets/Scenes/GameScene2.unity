@@ -741,5 +741,30 @@ PrefabInstance:
       propertyPath: displayTurn
       value: 
       objectReference: {fileID: 868919495}
+    - target: {fileID: 6638890010538529595, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+      propertyPath: _battleTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: bbd39bacf1f86ed4fb606a527a4902f4, type: 3}
+    - target: {fileID: 6638890010538529595, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+      propertyPath: _sceneLoader
+      value: 
+      objectReference: {fileID: 6638890010114903714}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+--- !u!1 &6638890010114903713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6638890010538529591, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+  m_PrefabInstance: {fileID: 6638890010114903712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6638890010114903714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638890010114903713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc75495c86737e14392cdf89d1861896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

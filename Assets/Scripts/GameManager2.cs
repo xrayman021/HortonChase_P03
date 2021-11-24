@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager2 : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GameManager2 : MonoBehaviour
     public static bool playerTurn = true;
     public Button endTurn;
     public Text displayTurn;
+    [SerializeField] SceneLoader _sceneLoader = null;
+    [SerializeField] AudioClip _battleTheme;
+
 
 
     void EndTurn()
@@ -98,6 +102,12 @@ public class GameManager2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        AudioHelper.PlayClip2D(_battleTheme, 1f);
+        
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        EnemyUnit.enemyNum = 5;
+        PlayerUnit.playerNum = 5;
         displayTurn.text = "Player Turn";
         endTurn.onClick.AddListener(EndTurn);
         tiles = new GameObject[width, height];
@@ -346,10 +356,26 @@ public class GameManager2 : MonoBehaviour
                 player.GetComponent<PlayerUnit>().canMove = true;
             }
         }
-
+        WinState();
+        LoseState();
 
     }
 
+    void WinState()
+    {
+        if (EnemyUnit.enemyNum == 0)
+        {
+            _sceneLoader.ReloadLevel();
+            SceneManager.LoadScene("WinScreen");
+        }
+    }
 
+    void LoseState()
+    {
+        if (PlayerUnit.playerNum == 0)
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
+    }
 
 }

@@ -10,15 +10,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void ReloadLevel()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // get current build index, from the current scene
+        int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        // load this scene (basically loads itself)
+        SceneManager.LoadScene(currentBuildIndex);
     }
 }

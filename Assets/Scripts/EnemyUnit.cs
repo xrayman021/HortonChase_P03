@@ -17,6 +17,7 @@ public class EnemyUnit : MonoBehaviour
     public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
+    public static int enemyNum = 5; 
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,7 @@ public class EnemyUnit : MonoBehaviour
         {
             Debug.Log("Enemy Died");
             Destroy(this.gameObject);
-
+            enemyNum--;
         }
     }
 
