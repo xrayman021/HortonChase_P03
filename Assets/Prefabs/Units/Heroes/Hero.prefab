@@ -127,10 +127,10 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   speed: 5
   health: 100
-  isMoving: 0
   Pb: {fileID: 2735173808484558375}
   _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
   _AttackSound: {fileID: 8300000, guid: b10cebc82815c544aa1145e7adfc41b5, type: 3}
+  animator: {fileID: 2170488086152124031}
 --- !u!136 &5728747372082125072
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 21c535a53feb6fc448787d358b70a23e, type: 3}
   m_Controller: {fileID: 9100000, guid: 9309fb80266a0e04297102230e1a2a32, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

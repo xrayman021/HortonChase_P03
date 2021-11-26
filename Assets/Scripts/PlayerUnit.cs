@@ -11,11 +11,13 @@ public class PlayerUnit : MonoBehaviour
     public Vector3 destination;
     public float speed;
     public int health = 3;
-    public bool isMoving;
+    bool isMoving;
+    bool isAttacking;
     public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
     public static int playerNum = 5;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,23 @@ public class PlayerUnit : MonoBehaviour
             //Destroy(gameObject);
             playerNum--;
         }
+
+        if(isMoving == false)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        if (isMoving == true)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        if (isAttacking == false)
+        {
+            animator.SetBool("isAttacking", false);
+        }
+        if (isAttacking == true)
+        {
+            animator.SetBool("isAttacking", true);
+        }
     }
 
     public void Move(Tile2 newLocation)
@@ -63,12 +82,14 @@ public class PlayerUnit : MonoBehaviour
             Debug.Log("Can't move");
             isMoving = false;
         }
+        //isMoving = false;
     }
 
     public void Attack(GameObject opponent)
     {
         if (canMove)
         {
+            isAttacking = true;
             AudioHelper.PlayClip2D(_AttackSound, 1f);
             EnemyUnit enemy = opponent.GetComponent<EnemyUnit>();
             enemy.health -= 10;
@@ -80,6 +101,7 @@ public class PlayerUnit : MonoBehaviour
         {
             Debug.Log("can't attack");
         }
+        //isAttacking = false;
     }
 
 
