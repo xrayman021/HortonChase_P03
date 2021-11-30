@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {fileID: 0}
-  range: 4
+  range: 5
+  attackRange: 1
   canMove: 1
   destination: {x: 0, y: 0, z: 0}
   speed: 5

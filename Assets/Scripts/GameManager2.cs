@@ -304,7 +304,7 @@ public class GameManager2 : MonoBehaviour
                 Debug.Log("Attack attempted");
                 Debug.Log(currentlySelected);
                 PlayerUnit unit = currentlySelected.GetComponent<PlayerUnit>();
-                if (Vector3.Distance(mouseOver.transform.position,currentlySelected.transform.position) < unit.range) 
+                if (Vector3.Distance(mouseOver.transform.position,currentlySelected.transform.position) < unit.attackRange) 
                 {
                     unit.Attack(mouseOver);
                 }
@@ -336,7 +336,7 @@ public class GameManager2 : MonoBehaviour
                 {
                     EnemyUnit eunit = enemy.GetComponent<EnemyUnit>();
                     GameObject closest = eunit.ClosestObjectWithTag("Hero");
-                    if (Vector3.Distance(eunit.transform.position,closest.transform.position) <= eunit.range) 
+                    if (Vector3.Distance(eunit.transform.position,closest.transform.position) <= eunit.attackRange) 
                     {
                         eunit.Attack(closest);
                         Debug.Log("Enemy Attacked Hero");
