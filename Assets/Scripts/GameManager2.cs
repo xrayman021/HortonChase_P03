@@ -23,6 +23,8 @@ public class GameManager2 : MonoBehaviour
     public Text displayTurn;
     [SerializeField] SceneLoader _sceneLoader = null;
     [SerializeField] AudioClip _battleTheme;
+    [SerializeField] AudioClip _selection;
+    [SerializeField] AudioClip _invalidSelection;
 
 
 
@@ -280,15 +282,22 @@ public class GameManager2 : MonoBehaviour
             if (currentlySelected.tag == "Tile") 
             {
                 currentlySelected = null;
+                AudioHelper.PlayClip2D(_invalidSelection, 1f);
             }
-            
+            else if (currentlySelected.tag == "Enemy")
+            {
+                currentlySelected = null;
+                AudioHelper.PlayClip2D(_invalidSelection, 1f);
+            }
         }
-        if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null && mouseOver.tag != "Enemy")
+        if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null /*&& mouseOver.tag != "Enemy"*/)
         {
             currentlySelected = mouseOver;
+            
         }
         if (currentlySelected != null && currentlySelected.tag == "Hero" && Input.GetMouseButtonDown(0))
         {
+            AudioHelper.PlayClip2D(_selection, 1f);
             Debug.Log("hero selected");
             if(mouseOver != null && mouseOver.tag == "Tile")
             {

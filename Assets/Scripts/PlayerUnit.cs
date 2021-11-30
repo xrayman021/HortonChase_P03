@@ -77,12 +77,13 @@ public class PlayerUnit : MonoBehaviour
             canMove = false;
             destination = newLocation.transform.position;
         }
+        isMoving = false;
         else
         {
             Debug.Log("Can't move");
             isMoving = false;
         }
-        //isMoving = false;
+        
     }
 
     public void Attack(GameObject opponent)

@@ -738,6 +738,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1604850755}
     - target: {fileID: 6638890010538529595, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+      propertyPath: _selection
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b540e749dbe3ca499cc7f0cd93307d0, type: 3}
+    - target: {fileID: 6638890010538529595, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
       propertyPath: displayTurn
       value: 
       objectReference: {fileID: 868919495}
@@ -749,6 +753,10 @@ PrefabInstance:
       propertyPath: _sceneLoader
       value: 
       objectReference: {fileID: 6638890010114903714}
+    - target: {fileID: 6638890010538529595, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
+      propertyPath: _invalidSelection
+      value: 
+      objectReference: {fileID: 8300000, guid: 984f95fde39f05946a6eeea61500f920, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 054c1d19eb84c454b8966c5151e04f0d, type: 3}
 --- !u!1 &6638890010114903713 stripped
