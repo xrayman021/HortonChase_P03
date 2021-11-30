@@ -23,6 +23,7 @@ MonoBehaviour:
   Pb: {fileID: 9107410622401726350}
   _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
   _AttackSound: {fileID: 8300000, guid: 6ba4b065782b3c24481ac7b6dedde64b, type: 3}
+  animator: {fileID: 5012032260772460502}
 --- !u!1001 &6598142492425806249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,6 +114,11 @@ PrefabInstance:
 --- !u!1 &8935162042683026296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2851162477878545105, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
+  m_PrefabInstance: {fileID: 6598142492425806249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5012032260772460502 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2170488086152124031, guid: 3207ee42b37223c4abd1ad4343fed552, type: 3}
   m_PrefabInstance: {fileID: 6598142492425806249}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &9107410622401726350 stripped

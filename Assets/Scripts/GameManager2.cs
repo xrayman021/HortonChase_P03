@@ -354,7 +354,10 @@ public class GameManager2 : MonoBehaviour
             displayTurn.text = "Player Turn";
             foreach (GameObject player in activePlayerUnits)
             {
-                player.GetComponent<PlayerUnit>().canMove = true;
+                if (player != null)
+                {
+                    player.GetComponent<PlayerUnit>().canMove = true;
+                }
             }
         }
         WinState();

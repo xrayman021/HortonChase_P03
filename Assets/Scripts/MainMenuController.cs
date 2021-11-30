@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     {
         if (_startingSong != null)
         {
-            AudioManager.Instance.PlaySong(_startingSong);
+            AudioHelper.PlayClip2D(_startingSong, 1f);
         }
     }
 

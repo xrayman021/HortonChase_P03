@@ -18,14 +18,16 @@ public class EnemyUnit : MonoBehaviour
     public ProgressBar Pb;
     [SerializeField] AudioClip _Footsteps;
     [SerializeField] AudioClip _AttackSound;
-    public static int enemyNum = 5; 
+    public static int enemyNum = 5;
+    bool isMoving;
+    bool isAttacking;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
-        
-        
+        enemyNum = 5;
     }
 
     // Update is called once per frame
@@ -45,6 +47,22 @@ public class EnemyUnit : MonoBehaviour
             Debug.Log("Enemy Died");
             Destroy(this.gameObject);
             enemyNum--;
+        }
+        if (isMoving == false)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        if (isMoving == true)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        if (isAttacking == false)
+        {
+            animator.SetBool("isAttacking", false);
+        }
+        if (isAttacking == true)
+        {
+            animator.SetBool("isAttacking", true);
         }
     }
 
@@ -212,6 +230,7 @@ public class EnemyUnit : MonoBehaviour
             if (canMove && Vector3.Distance(this.transform.position, newLocation.transform.position) <= range && GameManager2.playerTurn == false)
             {
                 AudioHelper.PlayClip2D(_Footsteps, 1f);
+                isMoving = true;
                 location.occupier = null;
                 location = newLocation;
                 location.occupier = this.gameObject;
@@ -220,8 +239,10 @@ public class EnemyUnit : MonoBehaviour
             }
             else
             {
+                isMoving = false;
                 Debug.Log("Can't move");
             }
+            //isMoving = false;
         }
         
     }
@@ -233,7 +254,7 @@ public class EnemyUnit : MonoBehaviour
             AudioHelper.PlayClip2D(_AttackSound, 1f);
             PlayerUnit unit = opponent.GetComponent<PlayerUnit>();
             unit.health -= 10;
-            
+            isAttacking = true;
             canMove = false;
         }
         

@@ -38,10 +38,10 @@ public class PlayerUnit : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             transform.Translate(0, 0, speed * Time.deltaTime);
         }
-        if (health<=0) 
+        if (health<=0 && gameObject != null) 
         {
             transform.Translate(0, -Time.deltaTime, 0);
-            //Destroy(gameObject);
+            Destroy(gameObject);
             playerNum--;
         }
 
