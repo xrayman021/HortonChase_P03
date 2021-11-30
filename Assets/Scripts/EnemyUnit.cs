@@ -6,6 +6,7 @@ public class EnemyUnit : MonoBehaviour
 { 
     public Tile2 location;
     public int range;
+    public int attackRange;
     public bool canMove = true;
     public Vector3 destination;
     public float speed;

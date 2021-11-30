@@ -281,8 +281,9 @@ public class GameManager2 : MonoBehaviour
             {
                 currentlySelected = null;
             }
+            
         }
-        if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null)
+        if (Input.GetMouseButtonDown(0) && mouseOver != null && currentlySelected == null && mouseOver.tag != "Enemy")
         {
             currentlySelected = mouseOver;
         }
