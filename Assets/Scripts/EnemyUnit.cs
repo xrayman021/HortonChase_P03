@@ -22,6 +22,7 @@ public class EnemyUnit : MonoBehaviour
     bool isMoving;
     bool isAttacking;
     public Animator animator;
+    private float attackCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,11 @@ public class EnemyUnit : MonoBehaviour
         if (isAttacking == true)
         {
             animator.SetBool("isAttacking", true);
+            attackCounter -= 1;
+            if (attackCounter <= 0)
+            {
+                isAttacking = false;
+            }
         }
     }
 
@@ -251,13 +257,17 @@ public class EnemyUnit : MonoBehaviour
     {
         if (GameManager2.playerTurn==false && canMove) 
         {
+            attackCounter = 10;
             AudioHelper.PlayClip2D(_AttackSound, 1f);
             PlayerUnit unit = opponent.GetComponent<PlayerUnit>();
             unit.health -= 10;
             isAttacking = true;
             canMove = false;
         }
-        
+        else
+        {
+            isAttacking = false;
+        }
     }
 
 }

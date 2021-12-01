@@ -18,12 +18,15 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] AudioClip _AttackSound;
     public static int playerNum = 5;
     public Animator animator;
+    private float attackCounter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         destination = this.transform.position;
         playerNum = 5;
+        isMoving = false;
+        isAttacking = false;
     }
 
     // Update is called once per frame
@@ -37,22 +40,28 @@ public class PlayerUnit : MonoBehaviour
             transform.LookAt(destination);
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             transform.Translate(0, 0, speed * Time.deltaTime);
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            animator.SetFloat("Speed", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         }
-        if (health<=0 && gameObject != null) 
+        if (health <= 0 && gameObject != null)
         {
             transform.Translate(0, -Time.deltaTime, 0);
             Destroy(gameObject);
             playerNum--;
         }
 
-        if(isMoving == false)
+        /*if (isMoving == false)
         {
             animator.SetBool("isMoving", false);
         }
         if (isMoving == true)
         {
             animator.SetBool("isMoving", true);
-        }
+        }*/
+        
+
         if (isAttacking == false)
         {
             animator.SetBool("isAttacking", false);
@@ -60,6 +69,11 @@ public class PlayerUnit : MonoBehaviour
         if (isAttacking == true)
         {
             animator.SetBool("isAttacking", true);
+            attackCounter -= 1;
+            if (attackCounter <= 0)
+            {
+                isAttacking = false;
+            }
         }
     }
 
@@ -77,19 +91,19 @@ public class PlayerUnit : MonoBehaviour
             canMove = false;
             destination = newLocation.transform.position;
         }
-        isMoving = false;
         else
         {
             Debug.Log("Can't move");
             isMoving = false;
         }
-        
+        //isMoving = false;
     }
 
     public void Attack(GameObject opponent)
     {
         if (canMove)
         {
+            attackCounter = 10;
             isAttacking = true;
             AudioHelper.PlayClip2D(_AttackSound, 1f);
             EnemyUnit enemy = opponent.GetComponent<EnemyUnit>();
@@ -101,6 +115,7 @@ public class PlayerUnit : MonoBehaviour
         else 
         {
             Debug.Log("can't attack");
+            isAttacking = false;
         }
         //isAttacking = false;
     }
