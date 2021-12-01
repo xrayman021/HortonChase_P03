@@ -330,7 +330,7 @@ public class GameManager2 : MonoBehaviour
         if(playerTurn == false)
         {
             
-            displayTurn.text = "Enemy Turn";
+            displayTurn.text = " ";
             foreach (GameObject enemy in activeEnemyUnits)
             {
                 if (enemy != null) 
@@ -352,7 +352,7 @@ public class GameManager2 : MonoBehaviour
                 
             }
             playerTurn = true;
-            displayTurn.text = "Player Turn";
+            displayTurn.text = " ";
             foreach (GameObject player in activePlayerUnits)
             {
                 if (player != null)
@@ -386,7 +386,7 @@ public class GameManager2 : MonoBehaviour
     IEnumerator CoUpdate ()
     {
         playerTurn = false;
-        displayTurn.text = "Enemy Turn";
+        displayTurn.text = " ";
         yield return new WaitForSeconds(1);
         foreach (GameObject g in activeEnemyUnits)
         {

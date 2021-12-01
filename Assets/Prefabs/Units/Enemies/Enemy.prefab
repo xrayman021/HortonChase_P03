@@ -19,7 +19,7 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   speed: 5
   attack_player_at: 1
-  health: 100
+  health: 50
   Pb: {fileID: 9107410622401726350}
   _Footsteps: {fileID: 8300000, guid: d534eeda1095eff418df64bd235b780a, type: 3}
   _AttackSound: {fileID: 8300000, guid: 6ba4b065782b3c24481ac7b6dedde64b, type: 3}
