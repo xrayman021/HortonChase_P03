@@ -30,16 +30,7 @@ public class GameManager2 : MonoBehaviour
 
     void EndTurn()
     {
-        playerTurn = false;
-        displayTurn.text = "Enemy Turn";
-        foreach (GameObject g in activeEnemyUnits) 
-        {
-            if (g != null) 
-            {
-                g.GetComponent<EnemyUnit>().canMove = true;
-            }
-           
-        }
+        StartCoroutine(CoUpdate());
     }
 
     List<GameObject> getAdjacent(int w, int h)
@@ -339,7 +330,8 @@ public class GameManager2 : MonoBehaviour
         if(playerTurn == false)
         {
             
-            foreach(GameObject enemy in activeEnemyUnits)
+            displayTurn.text = "Enemy Turn";
+            foreach (GameObject enemy in activeEnemyUnits)
             {
                 if (enemy != null) 
                 {
@@ -389,6 +381,22 @@ public class GameManager2 : MonoBehaviour
         {
             SceneManager.LoadScene("LoseScreen");
         }
+    }
+
+    IEnumerator CoUpdate ()
+    {
+        playerTurn = false;
+        displayTurn.text = "Enemy Turn";
+        yield return new WaitForSeconds(1);
+        foreach (GameObject g in activeEnemyUnits)
+        {
+            if (g != null)
+            {
+                g.GetComponent<EnemyUnit>().canMove = true;
+            }
+
+        }
+        yield return null;
     }
 
 }
