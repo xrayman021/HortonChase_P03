@@ -25,6 +25,7 @@ public class GameManager2 : MonoBehaviour
     [SerializeField] AudioClip _battleTheme;
     [SerializeField] AudioClip _selection;
     [SerializeField] AudioClip _invalidSelection;
+    private AudioSource Audio;
 
 
 
@@ -95,8 +96,10 @@ public class GameManager2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        AudioHelper.PlayClip2D(_battleTheme, 1f);
+        Audio = GetComponent<AudioSource>();
+        Audio.clip = _battleTheme;
+        Audio.loop = true;
+        Audio.Play();
         
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         EnemyUnit.enemyNum = 5;
